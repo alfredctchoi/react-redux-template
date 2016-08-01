@@ -1,16 +1,19 @@
-import {createStore} from 'redux'
+require('./index.scss');
+
+import {createStore, applyMiddleware} from 'redux'
 import App from './js/components/app'
 import React from 'react'
 import ReactDOM from  'react-dom'
-import counterApp from './js/reducers'
+import posts from './js/reducers'
 import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
 
 
 //store
-const store = createStore(counterApp);
-// console.log(store.getState());
-// store.dispatch(incrementCounter());
-// console.log(store.getState());
+const store = createStore(
+  posts,
+  applyMiddleware(thunk)
+);
 
 
 ReactDOM.render(

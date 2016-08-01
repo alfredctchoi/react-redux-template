@@ -1,9 +1,9 @@
 import React from 'react'
-import CounterDisplay from '../containers/counter.js'
+import PostList from '../containers/post-list.js'
 
 const App = () => (
   <div>
-    <CounterDisplay />
+    <PostList />
   </div>
 );
 

@@ -1,0 +1,17 @@
+@import "../../variables";
+
+.comments {
+  .comment-heading {
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  .comment {
+    margin: 10px 0;
+    font-size: 12px;
+
+    .author {
+      font-weight: 600;
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
-import counter from './counter'
+import postList from './post'
 
-const counterApp = combineReducers({
-  counter
+const app = combineReducers({
+  postList
 });
 
-export default counterApp;
+export default app;

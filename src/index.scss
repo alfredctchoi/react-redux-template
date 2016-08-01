@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  background-color: #3498db;
+  display: flex;
+  justify-content: center;
+  font-weight: 200;
+  line-height: 1.5;
+}
+
+hr.divider {
+  margin: 0;
+  padding: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 1px solid #DDD;
+}
