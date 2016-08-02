@@ -11,9 +11,14 @@ class PostComments extends Component {
     }
 
     render() {
-        const {comments} = this.props;
+        const {comments, isLoading} = this.props;
         return <div className="comments">
             <div className="comment-heading">Comments</div>
+            {
+                isLoading && <div className="text-center">
+                    Loading...
+                </div>
+            }
             {
                 comments && comments.length > 0 && comments.map(comment =>
                     <div key={comment.id} className="comment">

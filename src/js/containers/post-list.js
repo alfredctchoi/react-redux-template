@@ -17,8 +17,8 @@ class PostList extends Component {
     }
 
     render() {
-        const {isLoading, posts, selectedPostId, onPostSelect, comments} = this.props;
-        return <div>
+        const {isLoading, posts, selectedPostId, onPostSelect, comments, isCommentLoading} = this.props;
+        return <div className="post-list-container">
             {
                 isLoading &&
                 <div>
@@ -28,10 +28,10 @@ class PostList extends Component {
 
             {
                 !isLoading && posts.length > 0 &&
-                <Posts classes="post-list-container"
-                       posts={posts}
+                <Posts posts={posts}
                        selectedPostId={selectedPostId}
                        comments={comments}
+                       isCommentLoading={isCommentLoading}
                        onPostSelect={onPostSelect}/>
             }
         </div>
@@ -39,12 +39,13 @@ class PostList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {posts, isLoading, selectedPostId, comments} = state.postList;
+    const {posts, isLoading, selectedPostId, comments, isCommentLoading} = state.postList;
     return {
         posts,
         isLoading,
         selectedPostId,
-        comments
+        comments,
+        isCommentLoading
     }
 };
 

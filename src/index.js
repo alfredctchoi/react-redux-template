@@ -8,17 +8,16 @@ import posts from './js/reducers'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 
-
 //store
 const store = createStore(
-  posts,
-  applyMiddleware(thunk)
+    posts,
+    applyMiddleware(thunk)
 );
 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App/>
-  </Provider>,
-  document.getElementById('app')
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('app')
 );

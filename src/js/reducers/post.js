@@ -3,8 +3,9 @@ import {ENUMS as POST_ENUMS} from '../actions/post'
 const INITIAL_STATE = {
     posts: [],
     comments: {},
+    selectedPostId: null,
     isLoading: false,
-    selectedPostId: null
+    isCommentLoading: false
 };
 
 const posts = (state = INITIAL_STATE, action) => {
@@ -22,11 +23,17 @@ const posts = (state = INITIAL_STATE, action) => {
                 isLoading: false,
                 posts: action.posts
             });
+        case POST_ENUMS.LOADING_POST_COMMENTS:
+            return Object.assign({}, state, {
+                isCommentLoading: true
+            });
+            return;
         case POST_ENUMS.LOADED_POST_COMMENTS:
             const existingComments = Object.assign({}, state.comments);
             existingComments[action.postId] = action.comments;
             return Object.assign({}, state, {
-               comments: existingComments 
+                comments: existingComments,
+                isCommentLoading: false
             });
         default:
             return state;

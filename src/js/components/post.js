@@ -2,7 +2,7 @@ require('./post.scss');
 import React from 'react'
 import PostComments from '../components/post-comments'
 
-const Post = ({post, onPostSelect, isSelected, comments}) => {
+const Post = ({post, onPostSelect, isSelected, comments, isCommentLoading}) => {
     return <li className={`post${isSelected ? ' selected' : ''}`}
                onClick={onPostSelect}>
         <div className="post-container">
@@ -15,7 +15,7 @@ const Post = ({post, onPostSelect, isSelected, comments}) => {
         <div className="post-container">
             {
                 isSelected &&
-                <PostComments comments={comments}/>
+                <PostComments comments={comments} isLoading={isCommentLoading}/>
             }
         </div>
     </li>
