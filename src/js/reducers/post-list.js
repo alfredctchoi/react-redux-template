@@ -4,8 +4,7 @@ const INITIAL_STATE = {
     posts: [],
     comments: {},
     selectedPostId: null,
-    isLoading: false,
-    isCommentLoading: false
+    isLoading: false
 };
 
 const posts = (state = INITIAL_STATE, action) => {
@@ -22,18 +21,6 @@ const posts = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
                 isLoading: false,
                 posts: action.posts
-            });
-        case POST_ENUMS.LOADING_POST_COMMENTS:
-            return Object.assign({}, state, {
-                isCommentLoading: true
-            });
-            return;
-        case POST_ENUMS.LOADED_POST_COMMENTS:
-            const existingComments = Object.assign({}, state.comments);
-            existingComments[action.postId] = action.comments;
-            return Object.assign({}, state, {
-                comments: existingComments,
-                isCommentLoading: false
             });
         case POST_ENUMS.DESELECT_POST:
             return Object.assign({}, state, {

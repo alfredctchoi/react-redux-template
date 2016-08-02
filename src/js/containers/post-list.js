@@ -2,7 +2,7 @@ require('./post-list-container.scss');
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getPosts, selectPost, deslectPost} from '../actions/post'
+import {getPosts, selectPost, deselectPost} from '../actions/post'
 import Posts from '../components/posts'
 
 class PostList extends Component {
@@ -22,7 +22,7 @@ class PostList extends Component {
     }
 
     render() {
-        const {isLoading, posts, selectedPostId, onPostSelect, comments, isCommentLoading} = this.props;
+        const {isLoading, posts, selectedPostId, onPostSelect} = this.props;
         return <div className="post-list-container">
             {
                 isLoading &&
@@ -35,8 +35,6 @@ class PostList extends Component {
                 !isLoading && posts.length > 0 &&
                 <Posts posts={posts}
                        selectedPostId={selectedPostId}
-                       comments={comments}
-                       isCommentLoading={isCommentLoading}
                        onPostSelect={onPostSelect}/>
             }
         </div>
@@ -53,13 +51,11 @@ const isInPostRecursive = (node, className) => {
 };
 
 const mapStateToProps = (state) => {
-    const {posts, isLoading, selectedPostId, comments, isCommentLoading} = state.postList;
+    const {posts, isLoading, selectedPostId} = state.postList;
     return {
         posts,
         isLoading,
-        selectedPostId,
-        comments,
-        isCommentLoading
+        selectedPostId
     }
 };
 
@@ -73,7 +69,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         closeAllComments: (e) => {
             if (isInPostRecursive(e.target, 'post')) return;
-            dispatch(deslectPost());
+            dispatch(deselectPost());
         }
     }
 };

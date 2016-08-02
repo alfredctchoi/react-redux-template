@@ -1,12 +1,14 @@
 require('./post.scss');
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import PostComments from '../components/post-comments'
+import PostComments from '../containers/post-comments'
 
 class Post extends Component {
 
     componentDidUpdate(prevProps) {
         const {isSelected} = this.props;
+
+        // centers the post vertically on the page when selected
         if (!prevProps.isSelected && isSelected) {
             let component = ReactDOM.findDOMNode(this);
             document.body.scrollTop = component.offsetTop - 65;
@@ -14,7 +16,7 @@ class Post extends Component {
     }
 
     render() {
-        const {post, onPostSelect, isSelected, comments, isCommentLoading} = this.props;
+        const {post, onPostSelect, isSelected} = this.props;
         return <li id={`post_${post.id}`}
                    className={`post${isSelected ? ' selected' : ''}`}
                    onClick={onPostSelect}>
@@ -23,13 +25,7 @@ class Post extends Component {
                 <div className="body">{post.body}</div>
             </div>
             {
-                isSelected && <hr className="divider"/>
-            }
-            {
-                isSelected &&
-                <div className="post-container">
-                    <PostComments comments={comments} isLoading={isCommentLoading}/>
-                </div>
+                isSelected && <PostComments classes="post-container"/>
             }
 
         </li>
