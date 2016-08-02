@@ -2,9 +2,8 @@ require('./post-list-container.scss');
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getPosts} from '../actions/post'
+import {getPosts, selectPost, deslectPost} from '../actions/post'
 import Posts from '../components/posts'
-import {selectPost} from '../actions/post'
 
 class PostList extends Component {
     constructor(props) {
@@ -12,11 +11,14 @@ class PostList extends Component {
     }
 
     componentDidMount() {
-        const {loadPosts} = this.props;
+        const {loadPosts, closeAllComments} = this.props;
+        document.body.addEventListener('click', closeAllComments);
         loadPosts();
-        document.body.addEventListener('click', ()=>{
-            console.log('body');
-        })
+    }
+
+    componentWillUnmount(){
+        const {closeAllComments} = this.props;
+        document.body.removeEventListener('click', closeAllComments);
     }
 
     render() {
@@ -41,6 +43,15 @@ class PostList extends Component {
     }
 }
 
+const isInPostRecursive = (node, className) => {
+    if (node.className.indexOf(className) > -1) return true;
+    if (node.nodeName !== 'BODY') {
+        return isInPostRecursive(node.parentNode, className);
+    }
+
+    return false;
+};
+
 const mapStateToProps = (state) => {
     const {posts, isLoading, selectedPostId, comments, isCommentLoading} = state.postList;
     return {
@@ -59,6 +70,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         loadPosts: () => {
             dispatch(getPosts())
+        },
+        closeAllComments: (e) => {
+            if (isInPostRecursive(e.target, 'post')) return;
+            dispatch(deslectPost());
         }
     }
 };

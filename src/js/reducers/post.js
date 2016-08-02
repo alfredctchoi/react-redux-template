@@ -35,6 +35,10 @@ const posts = (state = INITIAL_STATE, action) => {
                 comments: existingComments,
                 isCommentLoading: false
             });
+        case POST_ENUMS.DESELECT_POST:
+            return Object.assign({}, state, {
+                selectedPostId: null
+            });
         default:
             return state;
     }

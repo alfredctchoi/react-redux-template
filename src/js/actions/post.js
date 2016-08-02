@@ -5,7 +5,8 @@ export const ENUMS = {
     LOADED_POSTS: 'LOADED_POSTS',
     SELECT_POST: 'SELECT_POST',
     LOADING_POST_COMMENTS: 'LOADING_POST_COMMENTS',
-    LOADED_POST_COMMENTS: 'LOADED_POST_COMMENTS'
+    LOADED_POST_COMMENTS: 'LOADED_POST_COMMENTS',
+    DESELECT_POST: 'DESELECT_POST'
 };
 
 const loadingPosts = () => {
@@ -73,4 +74,10 @@ export const loadCommentsIfNeeded = () => {
             return dispatch(fetchComments(state));
         }
     };
+};
+
+export const deslectPost = () => {
+    return {
+        type: ENUMS.DESELECT_POST
+    }
 };
