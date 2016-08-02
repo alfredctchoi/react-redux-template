@@ -12,13 +12,14 @@ class PostComments extends Component {
 
     render() {
         const {comments, isLoading} = this.props;
+        if (isLoading) {
+            return <div className="text-center">
+                Loading...
+            </div>
+        }
+
         return <div className="comments">
             <div className="comment-heading">Comments</div>
-            {
-                isLoading && <div className="text-center">
-                    Loading...
-                </div>
-            }
             {
                 comments && comments.length > 0 && comments.map(comment =>
                     <div key={comment.id} className="comment">
@@ -26,6 +27,8 @@ class PostComments extends Component {
                         <div className="comment-content">{comment.body}</div>
                     </div>)
             }
+
+            <input type="text" className="input" placeholder="add comment..."/>
         </div>
     }
 }

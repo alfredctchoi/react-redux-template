@@ -7,7 +7,7 @@ class Post extends Component {
 
     componentDidUpdate(prevProps) {
         const {isSelected} = this.props;
-        if (!prevProps.isSelected && isSelected){
+        if (!prevProps.isSelected && isSelected) {
             let component = ReactDOM.findDOMNode(this);
             document.body.scrollTop = component.offsetTop - 65;
         }
@@ -25,12 +25,13 @@ class Post extends Component {
             {
                 isSelected && <hr className="divider"/>
             }
-            <div className="post-container">
-                {
-                    isSelected &&
+            {
+                isSelected &&
+                <div className="post-container">
                     <PostComments comments={comments} isLoading={isCommentLoading}/>
-                }
-            </div>
+                </div>
+            }
+
         </li>
 
     }
