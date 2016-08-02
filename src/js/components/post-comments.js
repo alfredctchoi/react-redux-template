@@ -20,6 +20,7 @@ class PostComments extends Component {
 
         return <div className="comments">
             <div className="comment-heading">Comments</div>
+            <input type="text" className="input" placeholder="add comment..."/>
             {
                 comments && comments.length > 0 && comments.map(comment =>
                     <div key={comment.id} className="comment">
@@ -27,8 +28,6 @@ class PostComments extends Component {
                         <div className="comment-content">{comment.body}</div>
                     </div>)
             }
-
-            <input type="text" className="input" placeholder="add comment..."/>
         </div>
     }
 }

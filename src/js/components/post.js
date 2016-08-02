@@ -18,7 +18,7 @@ class Post extends Component {
         return <li id={`post_${post.id}`}
                    className={`post${isSelected ? ' selected' : ''}`}
                    onClick={onPostSelect}>
-            <div className="post-container">
+            <div className="post-container content">
                 <div className="heading">{post.title}</div>
                 <div className="body">{post.body}</div>
             </div>

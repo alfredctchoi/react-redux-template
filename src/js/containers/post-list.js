@@ -14,6 +14,9 @@ class PostList extends Component {
     componentDidMount() {
         const {loadPosts} = this.props;
         loadPosts();
+        document.body.addEventListener('click', ()=>{
+            console.log('body');
+        })
     }
 
     render() {
