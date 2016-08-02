@@ -1,24 +1,39 @@
 require('./post.scss');
-import React from 'react'
+import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
 import PostComments from '../components/post-comments'
 
-const Post = ({post, onPostSelect, isSelected, comments, isCommentLoading}) => {
-    return <li className={`post${isSelected ? ' selected' : ''}`}
-               onClick={onPostSelect}>
-        <div className="post-container">
-            <div className="heading">{post.title}</div>
-            <div className="body">{post.body}</div>
-        </div>
-        {
-            isSelected && <hr className="divider"/>
+class Post extends Component {
+
+    componentDidUpdate(prevProps) {
+        const {isSelected} = this.props;
+        if (!prevProps.isSelected && isSelected){
+            let component = ReactDOM.findDOMNode(this);
+            document.body.scrollTop = component.offsetTop - 65;
         }
-        <div className="post-container">
+    }
+
+    render() {
+        const {post, onPostSelect, isSelected, comments, isCommentLoading} = this.props;
+        return <li id={`post_${post.id}`}
+                   className={`post${isSelected ? ' selected' : ''}`}
+                   onClick={onPostSelect}>
+            <div className="post-container">
+                <div className="heading">{post.title}</div>
+                <div className="body">{post.body}</div>
+            </div>
             {
-                isSelected &&
-                <PostComments comments={comments} isLoading={isCommentLoading}/>
+                isSelected && <hr className="divider"/>
             }
-        </div>
-    </li>
-};
+            <div className="post-container">
+                {
+                    isSelected &&
+                    <PostComments comments={comments} isLoading={isCommentLoading}/>
+                }
+            </div>
+        </li>
+
+    }
+}
 
 export default Post;
